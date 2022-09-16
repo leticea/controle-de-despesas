@@ -63,8 +63,15 @@ form.addEventListener('submit', event => {
 
   event.preventDefault()
 
-  if (inputTransactionName.value.trim() === '' || inputTransactionAmount.value.trim() === '') {
+  const transactionName = inputTransactionName.value.trim();
+  const transactionAmount = inputTransactionAmount.value.trim();
 
-    alert('Por favor, preencha tanto o nome quanto o valor da transação.')
+  if (transactionName === '' || transactionAmount === '') {
+
+    alert('Por favor, preencha tanto o nome quanto o valor da transação.');
+    return;
   }
+
+  const transaction = { id: 1, name: 'transactionName', amount: transactionAmount };
+
 })
