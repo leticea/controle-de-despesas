@@ -2,6 +2,9 @@ const transactionsUl = document.querySelector('#transactions');
 const incomeDisplay = document.querySelector('#money-plus');
 const expenseDisplay = document.querySelector('#money-minus');
 const balanceDisplay = document.querySelector('#balance');
+const form = document.querySelector('#form');
+const inputTransactionName = document.querySelector('#text');
+const inputTransactionAmount = document.querySelector('#amount');
 
 const dummyTransactions = [
     { id: 1, name: 'Bolo de brigadeiro', amount: -20 },
@@ -38,10 +41,10 @@ const updateBalanceValues = () => {
     .reduce((accumulator, value) => accumulator + value, 0)
     .toFixed(2);
 
-  const expense = transactionsAmounts
+  const expense = Math.abs(transactionsAmounts
     .filter(value => value < 0)
-    .reduce((accumulator, value) => accumulator + value, 0)
-    .toFixed(2)
+    .reduce((accumulator, value) => accumulator + value, 0))
+    .toFixed(2);
 
   balanceDisplay.textContent = `R$ ${total}`;
   incomeDisplay.textContent = `R$ ${income}`;
@@ -55,3 +58,8 @@ const init = () => {
 }
 
 init()
+
+form.addEventListener('submit', event => {
+
+  event.preventDefault()
+})
