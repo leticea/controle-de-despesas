@@ -6,17 +6,16 @@ const form = document.querySelector('#form');
 const inputTransactionName = document.querySelector('#text');
 const inputTransactionAmount = document.querySelector('#amount');
 
-let dummyTransactions = [
-    { id: 1, name: 'Bolo de brigadeiro', amount: -20 },
-    { id: 2, name: 'Salário', amount: 300 },
-    { id: 3, name: 'Torta de Palmito ', amount: -10 },
-    { id: 4, name: 'Violão', amount: 150 }
-]
+const localStorageTransactions = JSON.parse(localStorage
+  .getItem('transactions'));
+let transactions = localStorage
+  .getItem('transactions') !== null ? localStorageTransactions : []
 
 const removeTransaction = ID => {
 
-  dummyTransactions = dummyTransactions.filter(transaction => transaction.id !== ID );
-  console.log(dummyTransactions)
+  transactions = transactions.filter(transaction => 
+    transaction.id !== ID );
+  init();
 }
 
 const addTransactionIntoDOM = transaction => {
