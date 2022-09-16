@@ -9,12 +9,13 @@ const inputTransactionAmount = document.querySelector('#amount');
 const localStorageTransactions = JSON.parse(localStorage
   .getItem('transactions'));
 let transactions = localStorage
-  .getItem('transactions') !== null ? localStorageTransactions : []
+  .getItem('transactions') !== null ? localStorageTransactions : [];
 
 const removeTransaction = ID => {
 
   transactions = transactions.filter(transaction => 
-    transaction.id !== ID );
+    transaction.id !== ID)
+  updateLocalStorage();
   init();
 }
 
@@ -36,7 +37,7 @@ const addTransactionIntoDOM = transaction => {
 
 const updateBalanceValues = () => {
 
-  const transactionsAmounts = dummyTransactions
+  const transactionsAmounts = transactions
     .map(transaction => transaction.amount);
 
   const total = transactionsAmounts
@@ -61,11 +62,16 @@ const updateBalanceValues = () => {
 const init = () => {
 
   transactionsUl.innerHTML = '';
-  dummyTransactions.forEach(addTransactionIntoDOM)
+  transactions.forEach(addTransactionIntoDOM)
   updateBalanceValues()
 }
 
 init()
+
+const updateLocalStorage = () => {
+
+  localStorage.setItem('transactions', JSON.stringify(transactions))
+}
 
 const generateID = () => Math.round(Math.random() * 1000)
 
@@ -86,9 +92,10 @@ form.addEventListener('submit', event => {
     name: transactionName, 
     amount: Number(transactionAmount) };
 
-    dummyTransactions.push(transaction);
-    init()
+    transactions.push(transaction);
+    init();
+    updateLocalStorage();
 
     inputTransactionName.value = '';
     inputTransactionAmount.value = '';
-})
+});
