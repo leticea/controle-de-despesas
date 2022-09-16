@@ -62,4 +62,9 @@ init()
 form.addEventListener('submit', event => {
 
   event.preventDefault()
+
+  if (inputTransactionName.value.trim() === '' || inputTransactionAmount.value.trim() === '') {
+
+    alert('Por favor, preencha tanto o nome quanto o valor da transação.')
+  }
 })
