@@ -30,7 +30,7 @@ Aula do canal [Roger Melo](https://www.youtube.com/watch?v=xarRciYWT5Q)
 ## 🚀 Como Rodar
 
 - Clone o projeto.
-- Entre no repositório e clice duas vezes no arquivo index.html
+- Entre no repositório e click duas vezes no arquivo index.html
 
 ## 🤔 Como contribuir
 
